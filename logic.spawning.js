@@ -12,7 +12,7 @@ roleSpawning = {
         }
 
         // Spawn Upgraders if there are less than 2 upgraders.
-    	if(totalUpgraders.length < 2 && spawn.energy > 250) {
+    	if(totalUpgraders.length < 4 && spawn.energy > 250) {
             var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader', resourceRoomIndex: 0});
             console.log('Spawning new upgrader: ' + newName);
         }
