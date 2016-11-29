@@ -13,12 +13,12 @@ roleSpawning = {
 
         // Spawn Upgraders if there are less than 2 upgraders.
     	if(totalUpgraders.length < 2 && spawn.energy > 250) {
-            var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader'});
+            var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader', resourceRoomIndex: 0});
             console.log('Spawning new upgrader: ' + newName);
         }
         // Spawn Upgraders if there are less than 2 upgraders.
         if(totalBuilders.length < 2 && spawn.energy > 250) {
-            var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE,MOVE], undefined, {role: 'builder'});
+            var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE,MOVE], undefined, {role: 'builder', resourceRoomIndex: 0});
             console.log('Spawning new builder: ' + newName);
         }
     }

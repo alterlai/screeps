@@ -5,7 +5,7 @@ var roleHarvester = {
         if(creep.carry.energy < creep.carryCapacity) {
             var sourcesRoomIndex = creep.memory.resourceRoomIndex;   
             var sources = creep.room.find(FIND_SOURCES);
-
+            
             movement_code = creep.moveTo(sources[sourcesRoomIndex]);
 
             if (movement_code == ERR_NOT_IN_RANGE)

@@ -1,4 +1,8 @@
 var roleUpgrader = {
+    /*
+    * @To-Do: Error will occur when all resources are unavailable and resourceRoomIndex will tick over to a non-existing resource so the creep will get stuck
+    */
+
 
     /** @param {Creep} creep **/
     run: function(creep) {
