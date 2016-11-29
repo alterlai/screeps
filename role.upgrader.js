@@ -18,9 +18,23 @@ var roleUpgrader = {
             }
         }
         else {
+            var sourcesRoomIndex = creep.memory.resourceRoomIndex;   
             var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
+
+            movement_code = creep.moveTo(sources[sourcesRoomIndex]);
+
+            if (movement_code == ERR_NOT_IN_RANGE)
+            {
+                console.log(creep.name + ": Moving to target");
+            }
+            else if (movement_code == ERR_NO_PATH)
+            {
+                creep.memory.resourceRoomIndex++;
+                console.log(creep.name + ": No path to source. Checking next source.");
+            } 
+            else if (movement_code == 0)
+            {
+                creep.harvest(sources[sourcesRoomIndex]);
             }
         }
     }
