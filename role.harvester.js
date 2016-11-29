@@ -34,6 +34,14 @@ var roleHarvester = {
                     creep.moveTo(targets[0]);
                 }
             }
+            // If there are no more energy cells, start upgrading the controller.
+            else
+            {
+                if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) 
+                {
+                    creep.moveTo(creep.room.controller);
+                }
+            }
         }
     }
 };

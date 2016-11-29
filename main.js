@@ -2,8 +2,12 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var logicSpawning = require('logic.spawning');
+var roleRepairman = require('role.repairman');
 
 module.exports.loop = function () {
+
+    //General vars
+    spawn1Room = Game.spawns.Spawn1.room;
 
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -14,6 +18,7 @@ module.exports.loop = function () {
 
     // Spawning logic
     logicSpawning.run(Game.spawns.Spawn1);
+
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -28,6 +33,10 @@ module.exports.loop = function () {
         if (creep.memory.role == 'builder')
         {
             roleBuilder.run(creep);
+        }
+        if (creep.memory.role == 'repairman')
+        {
+            roleRepairman.run(creep);
         }
     }
 }
