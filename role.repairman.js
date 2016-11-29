@@ -26,16 +26,17 @@ var repairMan = {
 			// If there are damaged buildings
 			if (damagedStructure)
 			{
-				creep.memory.reparingBuilding = damagedStructure;
+				creep.memory.repairingBuilding = damagedStructure;
 				creep.memory.repairing = true;
 			}
 		}
 		// If it has an assigned building to repair and is carrying energy.
 		else if (creep.memory.repairing && (creep.carry.energy == creep.carryCapacity))
 		{
-			if (creep.repair(creep.memory.reparingBuilding) == ERR_NOT_IN_RANGE)
+			console.log("kastanje");
+			if (creep.repair(creep.memory.repairingBuilding) == ERR_NOT_IN_RANGE)
 			{
-				creep.moveTo(creep.memory.reparingBuilding);
+				creep.moveTo(creep.memory.repairingBuilding);
 			}
 			else
 			{
@@ -48,25 +49,29 @@ var repairMan = {
 		}
 		// Otherwise start mining.
 		else 
-		{
-			var sourcesRoomIndex = creep.memory.resourceRoomIndex;   
-            var sources = creep.room.find(FIND_SOURCES);
+		{	
+			if (creep.carry.energy < creep.carryCapacity)
+			{
+				var sourcesRoomIndex = 1;  
+	            var sources = creep.room.find(FIND_SOURCES);
 
-            movement_code = creep.moveTo(sources[sourcesRoomIndex]);
+	            movement_code = creep.moveTo(sources[sourcesRoomIndex]);
 
-            if (movement_code == ERR_NOT_IN_RANGE)
-            {
-                console.log(creep.name + ": Moving to target");
-            }
-            else if (movement_code == ERR_NO_PATH)
-            {
-                creep.memory.resourceRoomIndex++;
-                console.log(creep.name + ": No path to source. Checking next source.");
-            } 
-            else if (movement_code == 0)
-            {
-                creep.harvest(sources[sourcesRoomIndex]);
-            }
+	            if (movement_code == ERR_NOT_IN_RANGE)
+	            {
+	                console.log(creep.name + ": Moving to target");
+	            }
+	            else if (movement_code == ERR_NO_PATH)
+	            {
+	                creep.memory.resourceRoomIndex++;
+	                console.log(creep.name + ": No path to source. Checking next source.");
+	            } 
+	            else if (movement_code == 0)
+	            {
+	                creep.harvest(sources[sourcesRoomIndex]);
+	            }
+			}
+			 
 		}
 	}
 }
